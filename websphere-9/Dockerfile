@@ -1,5 +1,19 @@
 FROM ibmcom/websphere-traditional:9.0.0.6-install
 
+USER root
+
+ENV PROFILE_NAME=$PROFILE_NAME \
+  SERVER_NAME=$SERVER_NAME \
+  ADMIN_USER_NAME=$ADMIN_USER_NAME
+
+COPY create_profile configure.sh configure.py /work/
+RUN chown -R was:was /work  && \
+    chmod u+x /work/configure.sh && \
+    chmod u+x /work/configure.py && \
+    chmod u+x /work/create_profile
+
+USER was
+
 ARG PROFILE_NAME=AppSrv01
 ARG CELL_NAME=DefaultCell01
 ARG NODE_NAME=DefaultNode01
@@ -12,5 +26,6 @@ ENV PROFILE_NAME=$PROFILE_NAME \
   ADMIN_USER_NAME=$ADMIN_USER_NAME
 
 RUN /work/create_profile
+RUN /work/configure.sh
 
 CMD ["/work/start_server"]
