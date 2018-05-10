@@ -17,5 +17,5 @@ stop_server()
 }
 
 start_server
-/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -f /work/configure.py
+/opt/IBM/WebSphere/AppServer/bin/wsadmin.sh -lang jython -f $1
 stop_server

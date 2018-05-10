@@ -6,7 +6,8 @@ ENV PROFILE_NAME=$PROFILE_NAME \
   SERVER_NAME=$SERVER_NAME \
   ADMIN_USER_NAME=$ADMIN_USER_NAME
 
-COPY create_profile configure.sh configure.py /work/
+COPY create_profile configure.sh configure.py start_server_with_deploy_monitor deploy-monitor.sh /work/
+RUN mkdir /work/config
 RUN chown -R was:was /work  && \
     chmod u+x /work/configure.sh && \
     chmod u+x /work/configure.py && \
@@ -26,6 +27,7 @@ ENV PROFILE_NAME=$PROFILE_NAME \
   ADMIN_USER_NAME=$ADMIN_USER_NAME
 
 RUN /work/create_profile
-RUN /work/configure.sh
+RUN mkdir -p /opt/IBM/WebSphere/AppServer/profiles/AppSrv01/monitoredDeployableApps/servers/server1
+RUN /work/configure.sh /work/configure.py
 
-CMD ["/work/start_server"]
+CMD ["/work/start_server_with_deploy_monitor"]
