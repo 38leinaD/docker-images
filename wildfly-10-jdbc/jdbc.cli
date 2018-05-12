@@ -2,9 +2,9 @@ embed-server --std-out=echo --server-config=standalone-full.xml
 # PostgreSQL
 module add --name=org.postgres --resources=/tmp/postgresql-9.4.1209.jar --dependencies=javax.api,javax.transaction.api
 /subsystem=datasources/jdbc-driver=postgres:add(driver-name="postgres",driver-module-name="org.postgres",driver-class-name=org.postgresql.Driver)
-data-source add --jndi-name=java:/POSTGRES_DS --name=POSTGRES_DS --connection-url=jdbc:postgresql://${env.DB_HOST:postgres}:${env.DB_PORT:5432}/${env.DB_NAME:postgres} --driver-name=postgres --user-name=${env.DB_USER:postgres} --password=${env.DB_PASS:postgres}
+data-source add --jndi-name=java:/POSTGRES --name=POSTGRES --connection-url=jdbc:postgresql://${env.DB_HOST:postgres}:${env.DB_PORT:5432}/${env.DB_NAME:postgres} --driver-name=postgres --user-name=${env.DB_USER:postgres} --password=${env.DB_PASS:postgres}
 
 # Oracle
 module add --name=com.oracle.ojdbc7 --resources=/tmp/ojdbc7.jar --dependencies=javax.api,javax.transaction.api
 /subsystem=datasources/jdbc-driver=oracle:add(driver-name=oracle,driver-module-name=com.oracle.ojdbc7,driver-xa-datasource-class-name=oracle.jdbc.xa.client.OracleXADataSource)
-data-source add --jndi-name=java:/ORACLE_DS --name=ORACLE_DS --connection-url=jdbc:oracle:thin:@${env.DB_HOST:oracle}:${env.DB_PORT:1521}:${env.DB_NAME:XE} --driver-name=oracle --user-name=${env.DB_USER:system} --password=${env.DB_PASS:oracle}
+data-source add --jndi-name=java:/ORACLE --name=ORACLE --connection-url=jdbc:oracle:thin:@${env.DB_HOST:oracle}:${env.DB_PORT:1521}:${env.DB_NAME:XE} --driver-name=oracle --user-name=${env.DB_USER:system} --password=${env.DB_PASS:oracle}
