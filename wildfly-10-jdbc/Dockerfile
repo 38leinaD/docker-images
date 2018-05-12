@@ -6,9 +6,9 @@ COPY wait-for /usr/local/bin/
 
 USER jboss
 COPY ojdbc7.jar postgresql-9.4.1209.jar /tmp/
-COPY jboss.cli /tmp/
+COPY jdbc.cli /tmp/
 
-RUN $JBOSS_HOME/bin/jboss-cli.sh --file=/tmp/jboss.cli
+RUN $JBOSS_HOME/bin/jboss-cli.sh --file=/tmp/jdbc.cli
 RUN rm -rf $JBOSS_HOME/standalone/configuration/standalone_xml_history/current/
 
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0"]
