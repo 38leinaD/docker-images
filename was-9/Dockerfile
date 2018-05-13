@@ -13,6 +13,8 @@ RUN chown -R was:was /work  && \
     chmod u+x /work/configure.py && \
     chmod u+x /work/create_profile
 
+RUN apt-get install rlwrap
+
 USER was
 
 ARG PROFILE_NAME=AppSrv01
