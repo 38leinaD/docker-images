@@ -32,6 +32,12 @@
     <!-- Automatically expand WAR files and EAR files -->
     <applicationManager autoExpand="true"/>
 
+    <!-- https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.iseries.doc/ae/rwlp_logging.html -->
+    <!-- AUDIT is default>
+    <!--logging consoleLogLevel="INFO"/-->
+    <logging traceSpecification="*=info:eclipselink.sql=all" traceFileName="stdout" traceFormat="BASIC"/>
+
+
     <!-- Derby -->
     <!-- https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_config_dds.html -->
     <library id="DerbyLib">
