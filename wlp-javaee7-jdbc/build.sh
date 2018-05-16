@@ -5,7 +5,7 @@ if [ ! -f postgresql-9.4.1209.jar ]; then
     curl -O https://jdbc.postgresql.org/download/postgresql-9.4.1209.jar
 fi
 
-if [ ! -f ojdbc7.jar ]; then
+if [ ! -f ojdbc7_g.jar ]; then
     echo "Download ojdbc7.jar from http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html"
     exit 1
 fi

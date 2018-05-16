@@ -33,8 +33,8 @@
     <applicationManager autoExpand="true"/>
 
     <!-- https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.iseries.doc/ae/rwlp_logging.html -->
-    <!-- AUDIT is default>
-    <!--logging consoleLogLevel="INFO"/-->
+    <!-- AUDIT is default -->
+    <!-- logging consoleLogLevel="INFO"/-->
     <logging traceSpecification="*=info:eclipselink.sql=all" traceFileName="stdout" traceFormat="BASIC"/>
 
 
@@ -64,7 +64,7 @@
 
     <!-- Oracle -->
     <library id="OracleLib">
-        <file name="/opt/ojdbc7.jar"/>
+        <file name="/opt/ojdbc7_g.jar"/>
     </library>
     <dataSource jndiName="ORACLE" transactional="true">
         <jdbcDriver libraryRef="OracleLib"/>
