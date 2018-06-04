@@ -1,4 +1,4 @@
-# Wildfly 10 Docker image
+# Websphere Liberty Docker image
 
 This is a docker-image is based on the [offical Websphere Liberty images](https://hub.docker.com/_/websphere-liberty/).
 Additionally, it contains modules for integration with popular databases:
