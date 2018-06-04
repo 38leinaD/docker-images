@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server description="new server">
+
+    <featureManager>
+		<feature>servlet-3.1</feature>
+		<feature>beanValidation-1.1</feature>
+		<feature>ssl-1.0</feature>
+		<feature>jndi-1.0</feature>
+		<feature>jca-1.7</feature>
+		<feature>jms-2.0</feature>
+		<feature>ejbPersistentTimer-3.2</feature>
+		<feature>appSecurity-2.0</feature>
+		<feature>j2eeManagement-1.1</feature>
+		<feature>jdbc-4.1</feature>
+		<feature>wasJmsServer-1.0</feature>
+		<feature>jaxrs-2.0</feature>
+		<feature>javaMail-1.5</feature>
+		<feature>cdi-1.2</feature>
+		<feature>jcaInboundSecurity-1.0</feature>
+		<feature>jsp-2.3</feature>
+		<feature>ejbLite-3.2</feature>
+		<feature>managedBeans-1.0</feature>
+		<feature>jsf-2.2</feature>
+		<feature>ejbHome-3.2</feature>
+		<feature>jaxws-2.2</feature>
+		<feature>jsonp-1.0</feature>
+		<feature>el-3.0</feature>
+		<feature>jaxrsClient-2.0</feature>
+		<feature>concurrent-1.0</feature>
+		<feature>appClientSupport-1.0</feature>
+		<feature>ejbRemote-3.2</feature>
+		<feature>jaxb-2.2</feature>
+		<feature>mdb-3.2</feature>
+		<feature>jacc-1.5</feature>
+		<feature>batch-1.0</feature>
+		<feature>ejb-3.2</feature>
+		<feature>json-1.0</feature>
+		<feature>jaspic-1.1</feature>
+		<feature>distributedMap-1.0</feature>
+		<feature>websocket-1.1</feature>
+		<feature>wasJmsSecurity-1.0</feature>
+		<feature>wasJmsClient-2.0</feature>
+
+		<feature>jpaContainer-2.1</feature>
+    </featureManager>
+
+	<basicRegistry id="basic" realm="BasicRealm"> 
+        <!-- <user name="yourUserName" password="" />  --> 
+    </basicRegistry>
+    
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="*" -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="9080"
+                  httpsPort="9443" />
+                  
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+    <!-- https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.iseries.doc/ae/rwlp_logging.html -->
+    <!-- AUDIT is default -->
+    <!-- logging consoleLogLevel="INFO"/-->
+    <logging traceSpecification="*=info:eclipselink.sql=all" traceFileName="stdout" traceFormat="BASIC"/>
+
+
+    <!-- Derby -->
+    <!-- https://www.ibm.com/support/knowledgecenter/en/SSEQTP_8.5.5/com.ibm.websphere.wlp.doc/ae/twlp_config_dds.html -->
+    <library id="DerbyLib">
+        <file name="/opt/derby.jar"/>
+    </library>
+    <dataSource id="DefaultDataSource" transactional="true">
+       <jdbcDriver libraryRef="DerbyLib"/>
+       <properties.derby.embedded connectionAttributes="upgrade=true" createDatabase="create" databaseName="/var/tmp/sample.embedded.db" shutdownDatabase="false"/>
+       <containerAuthData user="user1"  password="{xor}Oz0vKDtu" />
+    </dataSource>
+
+    <!-- PostgreSQL -->
+    <!-- https://blog.sebastian-daschner.com/entries/openliberty-with-postgres -->
+    <library id="PostgresLib">
+        <file name="/opt/postgresql-9.4.1209.jar"/>
+    </library>
+    <jdbcDriver id="PostgresDriver"
+        javax.sql.XADataSource="org.postgresql.xa.PGXADataSource"
+        javax.sql.ConnectionPoolDataSource="org.postgresql.ds.PGConnectionPoolDataSource"
+        libraryRef="PostgresLib"/>
+    <dataSource id="POSTGRES" jndiName="POSTGRES" jdbcDriverRef="PostgresDriver" type="javax.sql.XADataSource" transactional="true">
+        <properties serverName="postgres" portNumber="5432" databaseName="postgres" user="postgres" password="postgres"/>
+    </dataSource>
+
+    <!-- Oracle -->
+    <library id="OracleLib">
+        <file name="/opt/ojdbc7_g.jar"/>
+    </library>
+    <dataSource jndiName="ORACLE" transactional="true">
+        <jdbcDriver libraryRef="OracleLib"/>
+        <properties.oracle driverType="thin" databaseName="XE" serverName="oracle" portNumber="1521" user="system" password="oracle"/>
+    </dataSource>
+
+    <jpa defaultPersistenceProvider="org.eclipse.persistence.jpa.PersistenceProvider"/>
+
+</server>
