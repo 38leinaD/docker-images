@@ -9,11 +9,11 @@ ENV PROFILE_NAME=$PROFILE_NAME \
 COPY create_profile configure.sh configure.py start_server_with_deploy_monitor deploy-monitor.sh /work/
 RUN mkdir /work/config
 RUN chown -R was:was /work  && \
-    chmod u+x /work/configure.sh && \
-    chmod u+x /work/configure.py && \
-    chmod u+x /work/create_profile
+  chmod u+x /work/configure.sh && \
+  chmod u+x /work/configure.py && \
+  chmod u+x /work/create_profile
 
-RUN apt-get install rlwrap
+#RUN apt-get install -y rlwrap
 
 USER was
 
