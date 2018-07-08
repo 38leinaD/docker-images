@@ -1,4 +1,4 @@
-FROM ibmcom/websphere-traditional:9.0.0.6-install
+FROM ibmcom/websphere-traditional:9.0.0.7-install
 
 USER root
 
