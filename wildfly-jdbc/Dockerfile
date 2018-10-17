@@ -1,4 +1,4 @@
-FROM 38leinad/wildfly:13.0.0.Final
+FROM 38leinad/wildfly:14.0.0.Final
 
 USER root
 RUN yum -y install nc && yum clean all

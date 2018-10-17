@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION=13.0.0.Final
+VERSION=14.0.0.Final
 
 if [ ! -f postgresql-9.4.1209.jar ]; then
     curl -O https://jdbc.postgresql.org/download/postgresql-9.4.1209.jar

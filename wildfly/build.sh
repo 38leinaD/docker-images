@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-VERSION=13.0.0.Final
+VERSION=14.0.0.Final
 
 docker build -t 38leinad/wildfly:$VERSION .
 docker tag 38leinad/wildfly:$VERSION 38leinad/wildfly:latest
