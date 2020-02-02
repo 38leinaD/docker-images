@@ -1,4 +1,4 @@
-FROM 38leinad/was-9:latest
+FROM 38leinad/was:latest
 
 USER was
 COPY jdbc.py /work/

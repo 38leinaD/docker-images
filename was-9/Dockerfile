@@ -1,4 +1,4 @@
-FROM ibmcom/websphere-traditional:9.0.0.7-install
+FROM ibmcom/websphere-traditional:9.0.5.1
 
 USER root
 
@@ -7,8 +7,7 @@ ENV PROFILE_NAME=$PROFILE_NAME \
   ADMIN_USER_NAME=$ADMIN_USER_NAME
 
 COPY create_profile configure.sh configure.py start_server_with_deploy_monitor deploy-monitor.sh /work/
-RUN mkdir /work/config
-RUN chown -R was:was /work  && \
+RUN chown -R was:root /work  && \
   chmod u+x /work/configure.sh && \
   chmod u+x /work/configure.py && \
   chmod u+x /work/create_profile

@@ -6,8 +6,14 @@ if [ ! -f postgresql-9.4.1209.jar ]; then
 fi
 
 if [ ! -f ojdbc7.jar ]; then
-    echo "Download ojdbc7.jar from http://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html"
-    exit 1
+    curl -O http://nexus.saas.hand-china.com/content/repositories/rdc/com/oracle/ojdbc7/12.1.0.2/ojdbc7-12.1.0.2.jar
+    mv ojdbc7-12.1.0.2.jar ojdbc7.jar
 fi
 
-docker build -t 38leinad/was-9-jdbc:latest .
+docker build -t 38leinad/was-jdbc:latest .
+docker tag 38leinad/was-jdbc:latest 38leinad/was-jdbc:9.0.5.1
+
+if [[ "$1" == "push" ]]; then
+    docker push 38leinad/was-jdbc:latest
+    docker push 38leinad/was-jdbc:9.0.5.1
+fi

@@ -28,13 +28,13 @@ stop_server()
   kill -s INT $PID 
 }
 
-if [ ! -f "/work/passwordupdated" ]; then
-  /work/modify_password
+if ! cmp -s "/tmp/passwordupdated" "/tmp/PASSWORD"; then
+  /work/set_password.sh
 fi
 
 if [ "$UPDATE_HOSTNAME" = "true" ] && [ ! -f "/work/hostnameupdated" ]; then
   update_hostname
-fi 
+fi
 
 # >>> CONFIGURATION: Run dynamic files mounted into container
 if [ ! -z $(ls /work/config) ]; then
